@@ -1,0 +1,12 @@
+GET / HTTP/1.1
+Host: 127.0.0.1:5500
+
+###
+
+POST /v1/comments HTTP/1.1
+Host: 127.0.0.1:5500
+
+###
+
+GET /v1/stats HTTP/1.1
+Host: 127.0.0.1:5500
