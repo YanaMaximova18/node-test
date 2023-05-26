@@ -4,9 +4,16 @@ const port = 5500
 
 const express = require('express');
 const app = express();
+const morgan = require("morgan");
+const helmet = require("helmet");
 
 const routerApi = require('./v1/router');
+const dbAPI = require('./controllers/control');
 
+app.use('/db', dbAPI);
+
+app.use(morgan('dev'));
+app.use(helmet());
 
 app.use(express.static('public'));
 app.use('/v1', routerApi)
@@ -15,6 +22,10 @@ app.use('/v1', routerApi)
 app.listen(port, host, () =>{
     console.log(`Server is on. http://${host}:${port}`);
 });
+
+app.use((req, res) => {
+    res.status(404).send('"400 Bad Request"')
+})
 
 
 // const server = http.createServer((req, res) => {
