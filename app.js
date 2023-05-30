@@ -23,8 +23,14 @@ app.listen(port, host, () =>{
     console.log(`Server is on. http://${host}:${port}`);
 });
 
+app.use(function (err, req, res, next) {
+    const statusCode = err.statusCode || 500;
+    const message = err.message || 'Internal server error';
+    res.status(statusCode).json({ message: message });
+});
+
 app.use((req, res) => {
-    res.status(404).send('"400 Bad Request"')
+    res.status(400).send('"Несуществующий url"')
 })
 
 

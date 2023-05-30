@@ -1,20 +1,22 @@
 const db = require('../configs/config');
-const shema = new db.Shema({
+const schema = new db.Schema({
     name:{
         type: String,
-        require: true,
+        required: true,
         trim: true
     },
     text:{
         type: String,
-        require: true,
+        required: true,
         trim: true
     },
     date:{
-        type: date,
+        type: Date,
         default: Date.now()
     }
 },
 {versionKey: false});
+
+
 
 module.exports = db.model ('user', schema);
